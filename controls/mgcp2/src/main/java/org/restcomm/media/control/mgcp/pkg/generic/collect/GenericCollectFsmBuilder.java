@@ -147,7 +147,7 @@ public class GenericCollectFsmBuilder {
                                    GenericCollectContext context) {
         return builder.newStateMachine(GenericCollectState.PLAY_COLLECT,
                 StateMachineConfiguration.getInstance().enableDebugMode(false), detector, player,
-                asrEngine, eventSubject, scheduler, context);
+                asrEngine, handlerExt, eventSubject, scheduler, context);
     }
 
 }

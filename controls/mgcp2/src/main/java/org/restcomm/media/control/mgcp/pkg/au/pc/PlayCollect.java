@@ -53,7 +53,7 @@ import java.util.Map;
  */
 public class PlayCollect extends AbstractMgcpSignal {
 
-    private static final String SYMBOL = "pc";
+    public static final String SYMBOL = "pc";
 
     // Finite State Machine
     private final GenericCollectFsm fsm;
@@ -366,7 +366,7 @@ public class PlayCollect extends AbstractMgcpSignal {
          * @return
          */
         public int getExtraDigitTimer() {
-            String value = Optional.fromNullable(getParameter(SignalParameters.EXTRA_DIGIT_TIMER.symbol())).or("");
+            String value = Optional.fromNullable(getParameter(SignalParameters.EXTRA_DIGIT_TIMER.symbol())).or("0");
             return Integer.parseInt(value) * 100;
         }
 
