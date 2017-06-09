@@ -101,6 +101,14 @@ public class GenericCollectFsmImpl extends
         this.asrEngineListener = supportAsr() ? new LocalAsrEngineListener() : null;
     }
 
+    public DtmfDetectorListener getDetectorListener() {
+        return detectorListener;
+    }
+
+    public PlayerListener getPlayerListener() {
+        return playerListener;
+    }
+
     public boolean supportAsr() {
         return this.asrEngine != null;
     }

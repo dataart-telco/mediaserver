@@ -30,26 +30,27 @@ import org.restcomm.media.control.mgcp.pkg.SignalType;
 import org.restcomm.media.control.mgcp.pkg.au.*;
 import org.restcomm.media.control.mgcp.pkg.generic.collect.*;
 import org.restcomm.media.spi.dtmf.DtmfDetector;
+import org.restcomm.media.spi.dtmf.DtmfDetectorListener;
 import org.restcomm.media.spi.player.Player;
+import org.restcomm.media.spi.player.PlayerListener;
 
 import java.util.Map;
 
 /**
  * Plays a prompt and collects DTMF digits entered by a user.
- * 
+ * <p>
  * <p>
  * If no digits are entered or an invalid digit pattern is entered, the user may be reprompted and given another chance to enter
  * a correct pattern of digits. The following digits are supported: 0-9, *, #, A, B, C, D.
  * </p>
- * 
+ * <p>
  * <p>
  * By default PlayCollect does not play an initial prompt, makes only one attempt to collect digits, and therefore functions as
  * a simple Collect operation.<br>
  * Various special purpose keys, key sequences, and key sets can be defined for use during the PlayCollect operation.
  * </p>
- * 
- * @author Henrique Rosa (henrique.rosa@telestax.com)
  *
+ * @author Henrique Rosa (henrique.rosa@telestax.com)
  */
 public class PlayCollect extends AbstractMgcpSignal {
 
@@ -154,9 +155,17 @@ public class PlayCollect extends AbstractMgcpSignal {
         }
     };
 
+    public DtmfDetectorListener getDetectorListener() {
+        return ((GenericCollectFsmImpl) fsm).getDetectorListener();
+    }
+
+    public PlayerListener getPlayerListener() {
+        return ((GenericCollectFsmImpl) fsm).getPlayerListener();
+    }
+
     private class ParameterParser {
 
-        GenericCollectContext.Parameters parse(){
+        GenericCollectContext.Parameters parse() {
             return new GenericCollectContext.Parameters(
                     getInitialPromptSegments(),
                     getRepromptSegments(),
