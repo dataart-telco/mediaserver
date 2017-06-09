@@ -153,6 +153,11 @@ public class PlayCollect extends AbstractMgcpSignal {
             final OperationFailed operationFailed = new OperationFailed(PlayCollect.SYMBOL, context.getReturnCode());
             mgcpEventSubject.notify(mgcpEventSubject, operationFailed);
         }
+
+        @Override
+        public void onTextRecognized(GenericCollectState from, GenericCollectState to, GenericCollectEvent event, GenericCollectContext context) {
+            throw new UnsupportedOperationException("PlayCollect does not support text recognition");
+        }
     };
 
     public DtmfDetectorListener getDetectorListener() {
